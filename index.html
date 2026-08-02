@@ -1,13 +1,154 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>give-your-website-a-pulse</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Stellar Gallery</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700&family=Jost:wght@300;400;500;600&family=Michroma&family=Oxanium:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+
+    <div class="logo-group">
+
+        <h1 class="title">
+            <strong>
+                Stellar<br>
+                Gallery
+            </strong>
+        </h1>
+
+
+        <p class="text1">
+            NASA
+        </p>
+
+
+        <h2 class="subtitle">
+            APOD
+        </h2>
+
+
+        <p class="text2">
+            Astronomy Picture of the Day
+        </p>
+
+    </div>
+
+
+
+    <nav class="top-menu">
+
+        <a href="favorites.html" class="favorites-link">
+            ♡ Favorites
+        </a>
+
+    </nav>
+
+
+</header>
+
+
+
+
+<section class="controls">
+
+    <div class="controls-header">
+
+
+        <h2 id="image-title" class="section-title">
+            Loading...
+        </h2>
+
+
+        <input
+            type="date"
+            id="datepicker">
+
+
+    </div>
+
+</section>
+
+
+
+
+
+<main id="app">
+
+    <p>
+        Loading...
+    </p>
+
+</main>
+
+
+
+
+
+<section class="buttons">
+
+
+    <div class="nav-buttons">
+
+
+        <button id="previous">
+            ← Previous
+        </button>
+
+
+        <button id="today">
+            Today
+        </button>
+
+
+        <button id="next">
+            Next →
+        </button>
+
+
+    </div>
+
+
+
+
+    <div class="action-buttons">
+
+
+        <button id="favorite">
+            ♡ Favorite
+        </button>
+
+
+        <button id="download">
+            ⬇ Download
+        </button>
+
+
+    </div>
+
+
+</section>
+
+
+<script type="module" src="/src/main.js"></script>
+
+
+</body>
+
 </html>
