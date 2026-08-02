@@ -1,15 +1,22 @@
 import "./style.css";
 
+
 const container = document.querySelector("#favorites-list");
+
 
 
 function getFavorites() {
 
     return JSON.parse(
+
         localStorage.getItem("favorites")
+
     ) || [];
 
 }
+
+
+
 
 
 
@@ -19,13 +26,18 @@ function displayFavorites() {
     const favorites = getFavorites();
 
 
-    if (favorites.length === 0) {
+
+    if(favorites.length === 0) {
+
 
         container.innerHTML = `
+
             <p class="empty-message">
                 No favorite images yet.
             </p>
+
         `;
+
 
         return;
 
@@ -33,18 +45,30 @@ function displayFavorites() {
 
 
 
+
+
+
     container.innerHTML = favorites.map(item => `
+
+
 
         <article class="favorite-card">
 
 
-            <img 
-            src="${item.url || item.hdurl}"
-            alt="${item.title}">
+
+            <img
+
+                src="${item.hdurl || item.url}"
+
+                alt="${item.title}"
+
+            >
+
 
 
 
             <div class="favorite-card-content">
+
 
 
                 <h2>
@@ -52,28 +76,42 @@ function displayFavorites() {
                 </h2>
 
 
+
+
                 <p>
                     ${item.date}
                 </p>
 
 
+
+
                 <p>
-                    ${item.explanation.slice(0,180)}...
+                    ${item.explanation.substring(0,180)}...
                 </p>
 
 
 
-                <button 
-                class="remove-btn"
-                data-date="${item.date}">
+
+                <button
+
+                    class="remove-btn"
+
+                    data-date="${item.date}"
+
+                >
+
                     Remove
+
                 </button>
+
 
 
             </div>
 
 
+
         </article>
+
 
 
     `).join("");
@@ -85,41 +123,60 @@ function displayFavorites() {
 
 
 
+
+
+
+
 container.addEventListener(
-    "click",
-    (event)=>{
+"click",
+(event)=>{
 
 
-        if(event.target.classList.contains("remove-btn")){
+    if(
+        event.target.classList.contains("remove-btn")
+    ){
 
 
-            const date = event.target.dataset.date;
-
-
-            let favorites = getFavorites();
-
-
-
-            favorites = favorites.filter(
-                item => item.date !== date
-            );
+        const date =
+        event.target.dataset.date;
 
 
 
-            localStorage.setItem(
-                "favorites",
-                JSON.stringify(favorites)
-            );
+        let favorites =
+        getFavorites();
 
 
-            displayFavorites();
+
+        favorites =
+        favorites.filter(
+
+            item => item.date !== date
+
+        );
 
 
-        }
+
+        localStorage.setItem(
+
+            "favorites",
+
+            JSON.stringify(favorites)
+
+        );
+
+
+
+        displayFavorites();
 
 
     }
-);
+
+
+});
+
+
+
+
 
 
 

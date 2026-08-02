@@ -33,6 +33,7 @@ function formatDate(date) {
 }
 
 
+
 function loadFavorites() {
 
     return JSON.parse(
@@ -40,6 +41,7 @@ function loadFavorites() {
     ) || [];
 
 }
+
 
 
 function saveFavorites(favorites) {
@@ -50,6 +52,8 @@ function saveFavorites(favorites) {
     );
 
 }
+
+
 
 
 
@@ -68,7 +72,9 @@ async function loadAPOD(date = "") {
 
 
         const response = await fetch(
+
             `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&date=${date}`
+
         );
 
 
@@ -79,6 +85,7 @@ async function loadAPOD(date = "") {
 
 
         title.textContent = data.title;
+
 
         datePicker.value = data.date;
 
@@ -93,9 +100,10 @@ async function loadAPOD(date = "") {
 
             media = `
 
-            <img
-                src="${data.url}"
-                alt="${data.title}">
+                <img
+                    src="${data.url}"
+                    alt="${data.title}"
+                >
 
             `;
 
@@ -105,15 +113,16 @@ async function loadAPOD(date = "") {
 
             media = `
 
-            <video controls>
+                <video controls>
 
-                <source src="${data.url}">
+                    <source src="${data.url}">
 
-            </video>
+                </video>
 
             `;
 
         }
+
 
 
 
@@ -136,6 +145,9 @@ async function loadAPOD(date = "") {
     } catch(error) {
 
 
+        console.error(error);
+
+
         app.innerHTML = `
 
             <p>
@@ -145,13 +157,13 @@ async function loadAPOD(date = "") {
         `;
 
 
-        console.error(error);
-
-
     }
 
 
 }
+
+
+
 
 
 
@@ -169,7 +181,9 @@ function updateFavoriteButton() {
 
 
     const exists = favorites.some(
+
         item => item.date === currentData.date
+
     );
 
 
@@ -179,9 +193,7 @@ function updateFavoriteButton() {
 
         favoriteBtn.textContent = "♥ Favorited";
 
-        favoriteBtn.classList.add(
-            "active"
-        );
+        favoriteBtn.classList.add("active");
 
 
     } else {
@@ -189,15 +201,14 @@ function updateFavoriteButton() {
 
         favoriteBtn.textContent = "♡ Favorite";
 
-        favoriteBtn.classList.remove(
-            "active"
-        );
+        favoriteBtn.classList.remove("active");
 
 
     }
 
 
 }
+
 
 
 
@@ -216,28 +227,41 @@ favoriteBtn.addEventListener(
 
 
     const exists = favorites.some(
+
         item => item.date === currentData.date
+
     );
+
 
 
 
     if(exists) {
 
 
+        favorites = favorites.filter(
 
-        favorites =
-        favorites.filter(
             item => item.date !== currentData.date
-        );
 
+        );
 
 
     } else {
 
 
+        // Save only needed information
+        favorites.push({
 
-        favorites.push(currentData);
+            title: currentData.title,
 
+            date: currentData.date,
+
+            explanation: currentData.explanation,
+
+            url: currentData.url,
+
+            hdurl: currentData.hdurl
+
+        });
 
 
     }
@@ -251,7 +275,10 @@ favoriteBtn.addEventListener(
     updateFavoriteButton();
 
 
+
 });
+
+
 
 
 
@@ -268,8 +295,11 @@ downloadBtn.addEventListener(
 
 
     if(
+
         !currentData ||
+
         currentData.media_type !== "image"
+
     ) return;
 
 
@@ -280,12 +310,13 @@ downloadBtn.addEventListener(
 
 
     link.href =
-    currentData.hdurl ||
-    currentData.url;
+
+    currentData.hdurl || currentData.url;
 
 
 
     link.download =
+
     `${currentData.title}.jpg`;
 
 
@@ -293,7 +324,10 @@ downloadBtn.addEventListener(
     link.click();
 
 
+
 });
+
+
 
 
 
@@ -320,6 +354,8 @@ datePicker.addEventListener(
 
 
 
+
+
 /* ===========================
    NAVIGATION
 =========================== */
@@ -330,15 +366,14 @@ previousBtn.addEventListener(
 ()=>{
 
 
-    const date =
-    new Date(datePicker.value);
-
+    const date = new Date(
+        datePicker.value
+    );
 
 
     date.setDate(
         date.getDate() - 1
     );
-
 
 
     loadAPOD(
@@ -373,13 +408,12 @@ nextBtn.addEventListener(
 ()=>{
 
 
-    const date =
-    new Date(datePicker.value);
+    const date = new Date(
+        datePicker.value
+    );
 
 
-
-    const today =
-    new Date();
+    const today = new Date();
 
 
 
@@ -401,6 +435,8 @@ nextBtn.addEventListener(
 
 
 });
+
+
 
 
 
