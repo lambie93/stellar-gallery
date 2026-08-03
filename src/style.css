@@ -481,13 +481,21 @@ button:active {
 
     padding: 1.2rem;
 
+    font-family: "Oxanium", sans-serif;
+
 }
 
 
 
 .favorite-card h2 {
 
-    font-family: "Barlow Condensed", sans-serif;
+    font-family: "Oxanium", sans-serif;
+
+    font-size: 1.6rem;
+
+    font-weight: 600;
+
+    margin-bottom: 0.6rem;
 
 }
 
@@ -495,11 +503,23 @@ button:active {
 
 .favorite-card p {
 
+    font-family: "Oxanium", sans-serif;
+
     color: var(--muted);
+
+    font-size: 0.95rem;
+
+    line-height: 1.6;
+
+    margin-bottom: 0.8rem;
 
 }
 
+.favorite-card .remove-btn {
 
+    font-family: "Oxanium", sans-serif;
+
+}
 
 .empty-message {
 
@@ -508,6 +528,8 @@ button:active {
     color: var(--muted);
 
     margin-top: 3rem;
+
+    font-family: "Oxanium", sans-serif;
 
 }
 
